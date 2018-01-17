@@ -1,6 +1,9 @@
 import test from "./test.js";
-export default function () {
-	const hello = "world";
+import "../css/app.css";
 
-	console.log(test, hello);
+
+export default function () {
+	const hello = "hello world";
+
+	console.log(test, hello, "and what else");
 }

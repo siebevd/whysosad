@@ -1,0 +1,19 @@
+{
+  "name": "whysosad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siebevd/whysosad.git"
+  },
+  "author": "“Siebe Van Dijck <vandijckske@gmail.com> (http://www.siebevd.be)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siebevd/whysosad/issues"
+  },
+  "homepage": "https://github.com/siebevd/whysosad#readme"
+}

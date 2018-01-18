@@ -19,14 +19,11 @@
 			"error",
 			"unix"
 		],
-		"quotes": [
-			"error",
-			"double"
-		],
 		"semi": [
 			"error",
 			"always"
 		],
+		"no-unused-vars": ["warn", { "varsIgnorePattern": "h", "ignoreRestSiblings": true }],
 		"no-console": [
 			"warn",
 			{

@@ -10,7 +10,7 @@ import livereload from 'rollup-plugin-livereload'; // livereload the files
 
 
 export default {
-	input: 'src/js/main.js',
+	input: 'src/main.js',
 	output: {
 		file: 'build/js/main.min.js',
 		format: 'iife',
@@ -18,28 +18,30 @@ export default {
 	},
 	plugins: [
 		postcss({
-			extensions: [ '.css' ]
+			extensions: [ '.css' ],
+			modules: true
 		}),
 		resolve({
 			jsnext: true,
 			main: true,
 			browser: true,
 		}),
+		babel({
+			exclude: 'node_modules/**',
+		}),
 		commonjs(),
 		eslint({
 			exclude: [
-				'src/styles/**'
+				'node_modules/**',
+				'src/**/**.css'
 			]
-		}),
-		babel({
-			exclude: 'node_modules/**',
 		}),
 		replace({
 			exclude: 'node_modules/**',
 			ENV: JSON.stringify(process.env.NODE_ENV || 'development')
 		}),
-		serve(),
-		livereload('src'),
+		(process.env.NODE_ENV !== 'production' && serve()),
+		(process.env.NODE_ENV !== 'production' && livereload('src')),
 		(process.env.NODE_ENV === 'production' && uglify()), // Only use uglify when in production
 	]
 };

@@ -1,17 +1,21 @@
-import CONFIG from '../../config';
-
+import CONFIG from "../../config";
 
 /**
  * Get a random gif
  * @return {Promise}
  */
 function getRandomGif() {
-	return fetch(`https://api.giphy.com/v1/gifs/random?api_key=${CONFIG.giphy.apiKey}&tag=&rating=G`)
-					.then((res)=>res.json())
-					.then((data)=>{
-						// Return the url of the image
-						return Promise.resolve(data.data.image_url);
-					}).catch((e)=>console.log('ERROR:',e));
+	return fetch(
+		`https://api.giphy.com/v1/gifs/random?api_key=${
+			CONFIG.giphy.apiKey
+		}&tag=&rating=G`
+	)
+		.then(res => res.json())
+		.then(data => {
+			// Return the url of the image
+			return Promise.resolve(data.data.image_url);
+		})
+		.catch(e => console.log("ERROR:", e));
 }
 
 /**
@@ -21,19 +25,24 @@ function getRandomGif() {
  * @return {Promise}
  */
 function searchGifs(search, randomResult) {
-	let randomized = '';
+	let randomized = "";
 
 	if (randomResult) {
 		// Let's assume there will always be at least 2000 results
-		randomized = `&offset=${Math.round(Math.random()*2000)}`;
+		randomized = `&offset=${Math.round(Math.random() * 2000)}`;
 	}
 
-	return fetch(`https://api.giphy.com/v1/gifs/search?api_key=${CONFIG.giphy.apiKey}&q=${search}${randomized}`)
-					.then((res)=>res.json())
-					.then((data)=>{
-						// Return the array with images in it
-						return Promise.resolve(data.data);
-					}).catch((e)=>console.log('ERROR:',e));
+	return fetch(
+		`https://api.giphy.com/v1/gifs/search?api_key=${
+			CONFIG.giphy.apiKey
+		}&q=${search}${randomized}`
+	)
+		.then(res => res.json())
+		.then(data => {
+			// Return the array with images in it
+			return Promise.resolve(data.data);
+		})
+		.catch(e => console.log("ERROR:", e));
 }
 
 /**
@@ -41,7 +50,7 @@ function searchGifs(search, randomResult) {
  * @return {Promise}
  */
 function getFunnyGifs() {
-	return searchGifs('funny');
+	return searchGifs("funny");
 }
 
 /**
@@ -49,8 +58,7 @@ function getFunnyGifs() {
  * @return {Promise}
  */
 function getSadGifs() {
-	return searchGifs('sad', true);
-
+	return searchGifs("sad", true);
 }
 
 /**
@@ -58,13 +66,7 @@ function getSadGifs() {
  * @return {Promise}
  */
 function getCuteGifs() {
-	return searchGifs('cute puppy', true);
-
+	return searchGifs("cute puppy", true);
 }
 
-export {
-	getRandomGif,
-	getFunnyGifs,
-	getSadGifs,
-	getCuteGifs
-}
+export { getRandomGif, getFunnyGifs, getSadGifs, getCuteGifs };

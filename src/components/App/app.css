@@ -1,4 +1,3 @@
-
 /*---------------*/
 /*   Background  */
 /*---------------*/
@@ -9,7 +8,15 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: black;
+	background: #f80c6a;
+	transition: background 0.3s;
+}
+
+.active {
+	background: #000;
+}
+.active .background {
+	opacity: 1;
 }
 
 .background {
@@ -17,5 +24,6 @@
 	object-position: center;
 	width: 100%;
 	height: 100%;
-	opacity: .3;
+	opacity: 0.4;
+	transition: opacity 0.3s;
 }

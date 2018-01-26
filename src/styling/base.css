@@ -1,12 +1,3 @@
-@font-face {
-	font-family: "Bellaboo";
-	src: local("Bellaboo"),
-		url("assets/webfont/BELLABOO-Regular.eot") format("embedded-opentype");
-	font-weight: 300;
-	font-style: normal;
-}
-
 body * {
 	font-family: "Bellaboo", sans-serif;
 }
-

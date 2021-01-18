@@ -45,6 +45,7 @@ class App extends Component {
 
 	getNewCute = () => {
 		getCuteGifs().then(images => {
+			console.log("images are", images, images[0]);
 			this.setState({ selection: images[0].images.original.url });
 		});
 	};
@@ -72,17 +73,17 @@ class App extends Component {
 
 		return (
 			<div>
-				{this.state.type.length < 1 &&
-					!this.state.selection && <Decision getNewCute={this.getNewCute} />}
+				{this.state.type.length < 1 && !this.state.selection && (
+					<Decision getNewCute={this.getNewCute} />
+				)}
 				<div className={backgroundClasses}>
-					{this.state.background &&
-						!this.state.selection && (
-							<img
-								key={this.state.background}
-								className={styles.background}
-								src={this.state.background}
-							/>
-						)}
+					{this.state.background && !this.state.selection && (
+						<img
+							key={this.state.background}
+							className={styles.background}
+							src={this.state.background}
+						/>
+					)}
 					{this.state.selection && (
 						<img
 							key={this.state.selection}

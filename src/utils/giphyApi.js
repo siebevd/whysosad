@@ -6,9 +6,7 @@ import CONFIG from "../../config";
  */
 function getRandomGif() {
 	return fetch(
-		`https://api.giphy.com/v1/gifs/random?api_key=${
-			CONFIG.giphy.apiKey
-		}&tag=&rating=G`
+		`https://api.giphy.com/v1/gifs/random?api_key=${CONFIG.giphy.apiKey}&tag=&rating=G`
 	)
 		.then(res => res.json())
 		.then(data => {
@@ -29,16 +27,15 @@ function searchGifs(search, randomResult) {
 
 	if (randomResult) {
 		// Let's assume there will always be at least 2000 results
-		randomized = `&offset=${Math.round(Math.random() * 2000)}`;
+		randomized = `&offset=${Math.round(Math.random() * 300)}`;
 	}
 
 	return fetch(
-		`https://api.giphy.com/v1/gifs/search?api_key=${
-			CONFIG.giphy.apiKey
-		}&q=${search}${randomized}`
+		`https://api.giphy.com/v1/gifs/search?api_key=${CONFIG.giphy.apiKey}&q=${search}${randomized}`
 	)
 		.then(res => res.json())
 		.then(data => {
+			console.log("what is data", data);
 			// Return the array with images in it
 			return Promise.resolve(data.data);
 		})

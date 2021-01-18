@@ -24,7 +24,7 @@ class Decision extends Component {
 					<button className={styles.button} onClick={this.props.getNewCute}>
 						Cuteness
 					</button>
-					<button className={styles.button}>Lolz</button>
+					{/*<button className={styles.button}>Lolz</button>*/}
 				</div>
 			</div>
 		);

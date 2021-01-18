@@ -87,6 +87,7 @@ class App extends Component {
 					{this.state.selection && (
 						<img
 							key={this.state.selection}
+							onClick={this.getNewCute}
 							className={styles.background}
 							src={this.state.selection}
 						/>

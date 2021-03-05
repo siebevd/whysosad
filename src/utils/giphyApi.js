@@ -27,7 +27,7 @@ function searchGifs(search, randomResult) {
 
 	if (randomResult) {
 		// Let's assume there will always be at least 2000 results
-		randomized = `&offset=${Math.round(Math.random() * 300)}`;
+		randomized = `&offset=${Math.round(Math.random() * randomResult)}`;
 	}
 
 	return fetch(
@@ -55,15 +55,20 @@ function getFunnyGifs() {
  * @return {Promise}
  */
 function getSadGifs() {
-	return searchGifs("sad", true);
+	return searchGifs("sad", 300);
 }
 
 /**
  * Get some cute gifs
  * @return {Promise}
  */
-function getCuteGifs() {
-	return searchGifs("cute puppy", true);
+function getCuteGifs(superMode) {
+	if (superMode) {
+		return searchGifs("cute raccoon", 3);
+	} else {
+		return searchGifs("cute puppy", 300);
+	}
+	console.log("hello world");
 }
 
 export { getRandomGif, getFunnyGifs, getSadGifs, getCuteGifs };

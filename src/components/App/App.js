@@ -15,7 +15,8 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			type: ""
+			type: "",
+			superMode: false
 		};
 	}
 
@@ -28,6 +29,31 @@ class App extends Component {
 
 		getSadGifs().then(images => {
 			this.setState({ background: images[0].images.original.url });
+		});
+		let buffer = [];
+		let lastKeyTime = Date.now();
+		document.addEventListener("keydown", event => {
+			const charList = "abcdefghijklmnopqrstuvwxyz0123456789";
+			const key = event.key.toLowerCase();
+
+			// we are only interested in alphanumeric keys
+			if (charList.indexOf(key) === -1) return;
+
+			const currentTime = Date.now();
+
+			if (currentTime - lastKeyTime > 1000) {
+				buffer = [];
+			}
+
+			buffer.push(key);
+			lastKeyTime = currentTime;
+
+			if (buffer.join("") === "maria") {
+				this.setState({
+					superMode: true,
+					background: "https://media.giphy.com/media/qKCFeFGiojrAQ/giphy.gif"
+				});
+			}
 		});
 
 		// Register Handlers
@@ -44,9 +70,10 @@ class App extends Component {
 	 */
 
 	getNewCute = () => {
-		getCuteGifs().then(images => {
-			console.log("images are", images, images[0]);
-			this.setState({ selection: images[0].images.original.url });
+		getCuteGifs(this.state.superMode).then(images => {
+			const rnmd = Math.floor(Math.random() * images.length);
+			console.log("images are", images, images[rnmd]);
+			this.setState({ selection: images[rnmd].images.original.url });
 		});
 	};
 
@@ -71,10 +98,15 @@ class App extends Component {
 			active: this.state.selection
 		});
 
+		console.log("what is the state", this.state);
+
 		return (
 			<div>
 				{this.state.type.length < 1 && !this.state.selection && (
-					<Decision getNewCute={this.getNewCute} />
+					<Decision
+						superMode={this.state.superMode}
+						getNewCute={this.getNewCute}
+					/>
 				)}
 				<div className={backgroundClasses}>
 					{this.state.background && !this.state.selection && (

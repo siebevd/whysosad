@@ -22,7 +22,7 @@ class Decision extends Component {
 				<h2 className={styles.subTitle}>Give me some</h2>
 				<div className={styles.buttonContainer}>
 					<button className={styles.button} onClick={this.props.getNewCute}>
-						Cuteness
+						{this.props.superMode && "Ultra-Super"} Cuteness
 					</button>
 					{/*<button className={styles.button}>Lolz</button>*/}
 				</div>
